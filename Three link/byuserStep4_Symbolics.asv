@@ -5,6 +5,5 @@ SRD = SRDuserinterface();
 
 timerVal = tic;
 SRD.DeriveEquationsForSimulation('UseCasadi', false, 'ToLinearize', true, 'ToSimplify', true, ...
-    'ToRecreateSymbolicEngine', true, 'dissipation_coefficients', [], ...
-    'NumberOfWorkers', 8, 'ToUseParallelizedSimplification', false, 'ToOptimizeFunctions', true);
+    'ToRecreateSymbolicEngine', true, 'dissipation_coefficients', [10;1;10]);
 toc(timerVal);

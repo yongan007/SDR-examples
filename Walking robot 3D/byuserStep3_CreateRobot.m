@@ -6,6 +6,9 @@ SRD = SRDuserinterface;
 Ground = SRD.CreateGroundLink();
 
 %Create other links
+
+% LinkArray = RSD_URDF_get_LinkArray()
+
 index = 1;
 Torso = SRDLinkWithJoint('FloatingBase_6dof', index, 'datafile_Torso',    Ground, 1); index = index + 1;
 RightHip = SRDLinkWithJoint('abs_spherical',  index, 'datafile_RightHip', Torso,  3); index = index + 1;
@@ -17,13 +20,15 @@ LeftFoot =  SRDLinkWithJoint('abs_spherical',  index, 'datafile_LeftFoot',  Left
 
 %Set generalised coordinates; Use negative numbers to make clock-wise
 %rotations be positive
-Torso.SetUsedGenCoordinates([1, 2, 3, 4, 5, 6]);
+SetUsedGenCoordinates(LinkArray, "Torso", [1, 2, 3, 4, 5, 6]);
 RightHip.SetUsedGenCoordinates([7, 8, 9]);
 LeftHip.SetUsedGenCoordinates([10, 11, 12]);
-RightShin.SetUsedGenCoordinates(13);
+RightShin.SetUsedGenCoordinates(-13);
 LeftShin.SetUsedGenCoordinates(14);
 RightFoot.SetUsedGenCoordinates([15, 16, 17]);
 LeftFoot.SetUsedGenCoordinates([18, 19, 20]);
+
+% RSD_URDF_set_gen_coordinates(LinkArray)
 
 LinkArray = [Ground; Torso; RightHip; LeftHip; 
              RightShin; LeftShin;
