@@ -1,0 +1,44 @@
+close all; clear; %clear classes;
+clc; 
+
+%Create user interfase object for SRD
+SRD = SRDuserinterface();
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dynamics
+
+SymbolicEngine = SRD.DeriveEquationsForSimulation('UseCasadi', true, ...
+    'ToLinearize', false, ...                    %needed if you want to use LQR and other linearization-based methods
+    'ToRecreateSymbolicEngine', true, ...        %set false if you already have a symbolic engine saved and you want to load it (doesn't work with Casadi)
+    'dissipation_coefficients', [], ...           %provide non-default dissipation (viscous friction) coefficients
+    'ToSimplify', false, ...                      %if you don't use Casadi, set true, unless your robot is huge
+    'ToUseParallelizedSimplification', false, ... %if you don't use Casadi, set true to automatically palallelize your symbolic computations
+    'NumberOfWorkers', 8, ...                     %if you don't use Casadi, set how many workers you want to palallelize your symbolic computations
+    'ToOptimizeFunctions', true, ...              %if you don't use Casadi, set false to skip function optimization (will result in very slow simulation)
+    'ToSaveSymbolicEngine', false);               %if you use Casadi, set false to ovoid errors related to MATLAB trying to serialize Casadi objects
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inverse kinematics
+
+%%%%%%%%%%%%
+%construct inverse kinematics task
+rC = SymbolicEngine.GetCoM;
+Task = rC; 
+%%%%%%%%%
+
+SRD_IK_generate_inverse_kinematics_functions('SymbolicEngine', SymbolicEngine, ...
+    'Task', Task, ...
+    'Casadi_cfile_name', 'g_InverseKinematics', ...
+    'Symbolic_ToSimplify', true, ...
+    'Symbolic_UseParallelizedSimplification', false, ...
+    'Symbolic_ToOptimizeFunctions', true, ...
+    'FunctionName_Task', 'g_InverseKinematics_Task', ...
+    'Function_TaskJacobian', 'g_InverseKinematics_TaskJacobian', ...
+    'Function_TaskJacobian_derivative', 'g_InverseKinematics_TaskJacobian_derivative', ...
+    'Path', 'IK_folder/');
+
+
+%Call function for creating SRD inverse kinematics engine
+% InverseKinematicsEngine = SRD.SetupSymbolicInverseKinematics('Task', Task, 'SymbolicEngine', SymbolicEngine, 'ToSaveInverseKinematicsEngine', false);

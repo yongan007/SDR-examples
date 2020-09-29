@@ -22,7 +22,10 @@ SymbolicEngine = SRD.GetSymbolicEngine;
 
 ConstraintValue = [1; 0; 0];
 
+%remember that for SRD Constraint == 0
 Constraint = SymbolicEngine.LinkArray(4).AbsoluteFollower - ConstraintValue;
+%y-component isn't needed because it s a planar robot, moving in the
+%X-Z-plane
 Constraint = [Constraint(1); Constraint(3)];
 
 SymbolicEngine.BuildLagrangeMultiplierEq_JS(Constraint, true);

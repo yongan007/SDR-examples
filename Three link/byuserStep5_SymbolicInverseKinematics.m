@@ -9,9 +9,9 @@ SymbolicEngine = SRD.GetSymbolicEngine();
 %construct inverse kinematics task
 rC = SymbolicEngine.GetCoM;
 
-abs_phs3 = SymbolicEngine.q(1) + SymbolicEngine.q(2) + SymbolicEngine.q(3);
+abs_phi = SymbolicEngine.q(1) + SymbolicEngine.q(2) + SymbolicEngine.q(3);
   
-Task = [rC(1); rC(3); abs_phs3]; 
+Task = [rC(1); rC(3); abs_phi]; 
 %%%%%%%%%
 
 %Call function for creating SRD inverse kinematics engine
