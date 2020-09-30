@@ -1,8 +1,5 @@
 clear; close all;
 
-%Create user interfase object for SRD
-SRD = SRDuserinterface;
-
 %Get initial position
 InitialPosition = SRD_get('InitialPosition');
 Handler_IK_Model = SRD_get('Handler_IK_Model');
