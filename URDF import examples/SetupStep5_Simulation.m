@@ -8,7 +8,7 @@ Handler_State = SRD_get_handler__state('InitialPosition', InitialPosition, ...
 Handler_IK_Solution = SRD_get('Handler_IK_Solution');
 Handler_dynamics_generalized_coordinates_model = SRD_get('Handler_dynamics_generalized_coordinates_model');
 
-dt = 0.0001;
+dt = 0.001;
 tf = Handler_IK_Solution.TimeExpiration;
 tf = 0.1;
 

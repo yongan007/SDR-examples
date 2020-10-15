@@ -102,12 +102,12 @@ SRD_save(Handler_dynamics_generalized_coordinates_model, 'Handler_dynamics_gener
 
 %%%%%%%%%%%%
 %construct inverse kinematics task
-rC = SymbolicEngine.GetCoM;
-iiwa_link_7 = SRD_LinkGet(SymbolicEngine.LinkArray, 'iiwa_link_7');
-
-r_EE = iiwa_link_7.AbsoluteCoM; %(!) it has two followers, dunno which to pick, or what they mean, needs to be fixed
-
-Task = [rC; r_EE; SymbolicEngine.q(end)]; 
+% rC = SymbolicEngine.GetCoM;
+% iiwa_link_7 = SRD_LinkGet(SymbolicEngine.LinkArray, 'iiwa_link_7');
+% 
+% r_EE = iiwa_link_7.AbsoluteCoM; %(!) it has two followers, dunno which to pick, or what they mean, needs to be fixed
+% 
+% Task = [rC; r_EE; SymbolicEngine.q(end)]; 
 Task = [SymbolicEngine.q]; 
 %%%%%%%%%
 

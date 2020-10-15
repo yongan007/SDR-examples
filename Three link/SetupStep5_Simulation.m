@@ -1,4 +1,4 @@
-close all;
+close all; clear classes;
 
 InitialPosition = SRD_get('InitialPosition');
 
@@ -74,7 +74,7 @@ drawnow;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 
-ToAnimate = false;
+ToAnimate = true;
 
 if ToAnimate
 DrawRobot_function = SRD_DrawRobot_get_function('DrawRobot_Type', 'Default', ... %'Default' or 'STL' or 'Custom'

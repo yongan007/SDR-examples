@@ -31,8 +31,10 @@ SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_5', 5);
 SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_6', 6);
 SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_7', 7);
 
+Color_0 = [1, 0, 0];
 Color_1 = [0.95, 0.5, 0.3];
 Color_2 = [0.00, 0.00, 0.00];
+SRD_LinkSet_Color(LinkArray, 'iiwa_link_0', Color_0);
 SRD_LinkSet_Color(LinkArray, 'iiwa_link_1', Color_1);
 SRD_LinkSet_Color(LinkArray, 'iiwa_link_2', Color_2);
 SRD_LinkSet_Color(LinkArray, 'iiwa_link_3', Color_1);
