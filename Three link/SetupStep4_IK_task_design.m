@@ -6,8 +6,8 @@ Handler_IK_Model = SRD_get('Handler_IK_Model');
 IC_Task = Handler_IK_Model.get_Task(InitialPosition);
 
 ZeroOrderDerivativeNodes = {IC_Task(1), IC_Task(1);
-                            IC_Task(2), IC_Task(2)+0.25;  
-                            IC_Task(3), IC_Task(3)-0.25}; 
+                            IC_Task(2), IC_Task(2)+0.15;  
+                            IC_Task(3), IC_Task(3)-0.15}; 
 FirstOrderDerivativeNodes = {0, 0; 
                              0, 0; 
                              0, 0}; 
@@ -28,7 +28,7 @@ Handler_IK_task = SRD_get_handler__IK_task__splines('NodeTimes', NodeTimes, ...
 SRD_save(Handler_IK_task, 'Handler_IK_task');
 
 % check resulting task
-Handler_IK_task.State.Spline.Plot;
+% Handler_IK_task.State.Spline.Plot;
 
 %%%%%%%%
 

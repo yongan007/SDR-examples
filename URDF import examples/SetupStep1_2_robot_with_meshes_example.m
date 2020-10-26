@@ -21,15 +21,15 @@ SRD = SRDuserinterface;
 % Torso.SetUsedGenCoordinates(3);
 
 
-LinkArray = UP_GetLinkArrayFromURDF('UrdfFilePath','./iiwa/iiwa14.urdf','ParseSTL',true);
+LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','./iiwa/iiwa14.urdf','ParseSTL',true);
 
-SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_1', 1);
-SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_2', 2);
-SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_3', 3);
-SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_4', 4);
-SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_5', 5);
-SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_6', 6);
-SRDLinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_7', 7);
+SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_1', 1);
+SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_2', 2);
+SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_3', 3);
+SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_4', 4);
+SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_5', 5);
+SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_6', 6);
+SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_7', 7);
 
 Color_0 = [1, 0, 0];
 Color_1 = [0.95, 0.5, 0.3];

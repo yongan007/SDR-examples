@@ -57,6 +57,16 @@ description = SRD_generate_dynamics_generalized_coordinates_model(...
 Handler_dynamics_generalized_coordinates_model = SRD_get_handler__dynamics_generalized_coordinates_model('description', description);
 SRD_save(Handler_dynamics_generalized_coordinates_model, 'Handler_dynamics_generalized_coordinates_model');
 
+
+Handler_dynamics_generalized_coordinates_model = SRD_get('Handler_dynamics_generalized_coordinates_model');
+InitialPosition = SRD_get('InitialPosition');
+H = Handler_dynamics_generalized_coordinates_model.get_joint_space_inertia_matrix(InitialPosition)
+
+
+H1 = Handler_dynamics_generalized_coordinates_model.get_joint_space_inertia_matrix(InitialPosition + 0.1*randn(size(InitialPosition)))
+
+
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % Linearization
 % 
