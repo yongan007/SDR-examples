@@ -23,14 +23,6 @@ SRD = SRDuserinterface;
 
 LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','./iiwa/iiwa14.urdf','ParseSTL',true);
 
-SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_1', 1);
-SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_2', 2);
-SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_3', 3);
-SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_4', 4);
-SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_5', 5);
-SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_6', 6);
-SRD_LinkSet_UsedGenCoordinates(LinkArray, 'iiwa_link_7', 7);
-
 Color_0 = [1, 0, 0];
 Color_1 = [0.95, 0.5, 0.3];
 Color_2 = [0.00, 0.00, 0.00];
@@ -43,19 +35,18 @@ SRD_LinkSet_Color(LinkArray, 'iiwa_link_5', Color_1);
 SRD_LinkSet_Color(LinkArray, 'iiwa_link_6', Color_2);
 SRD_LinkSet_Color(LinkArray, 'iiwa_link_7', Color_1);
 
-SRD_save(LinkArray, 'LinkArray');
-
-%iiwa
 % InitialPosition = [ pi/2; pi/2; pi/2; pi/2; pi/2; pi/2; pi/2; pi/2; pi/2; 0; 0];
 InitialPosition = [ pi/2; pi/2; pi/2; pi/2; pi/2; pi/2; pi/2;];
+
+SRD_save(LinkArray, 'LinkArray');
 SRD_save(InitialPosition, 'InitialPosition');
 
-SimulationEngine = SRD.CreateRobotStructure('LinkArray', LinkArray,  ...
-    'InitialPosition', InitialPosition); %Create the robot
-SRD_save(SimulationEngine, 'SimulationEngine');
+Chain = SRD_Chain(LinkArray);
+SRD_save(Chain, 'Chain');
+%Chain.Update(InitialPosition)
 
 
-SRD.SetupVisuals('AxisLimits', [-0.2; 1; -0.2; 1; 0; 1], ...
+SRD_SetupVisuals('AxisLimits', [-1; 1; -1; 1; -1; 1], ...
     'ViewAngle', [-37.5, 30], ...
     'ToDrawMeshes', true, ...
     'Animation_ToUseGrid', true, ...
@@ -72,14 +63,13 @@ SRD.SetupVisuals('AxisLimits', [-0.2; 1; -0.2; 1; 0; 1], ...
     'DrawRobot_STL_material', 'metal', ... %shiny dull metal
     'ToDrawFrames', false, ...
     'DrawRobot_Frame_Scale', 0.2, ...
-    'DrawRobot_Frame_LineWidth', 1, ...
-    'FileName_visuals_config', []);
+    'DrawRobot_Frame_LineWidth', 1);
 
 DrawRobot_function = SRD_DrawRobot_get_function('DrawRobot_Type', 'STL', ... %'Default' or 'STL' or 'Custom'
     'DrawRobot_Custom_handle', [], ...
-    'Function_Type', 'DrawInitialPosition', ... %'DrawGivenPosition' or 'DrawInitialPosition'  or 'DrawCurrentPosition'
-    'SimulationEngine', [], ...
-    'FileName_visuals_config', []);
+    'Function_Type', 'DrawGivenPosition', ... %'DrawGivenPosition' or 'DrawInitialPosition'  or 'DrawCurrentPosition'
+    'Chain', Chain);
 
-DrawRobot_function([])
+DrawRobot_function(InitialPosition, [])
 SRD__make_default_scene('STL')
+            
