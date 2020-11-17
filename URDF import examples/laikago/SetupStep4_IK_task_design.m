@@ -3,7 +3,7 @@ clear; close all;
 %Get initial position
 InitialPosition = SRD_get('InitialPosition');
 Handler_IK_Model = SRD_get('Handler_IK_Model');
-IC_Task = Handler_IK_Model.get_Task(InitialPosition(1));
+IC_Task = Handler_IK_Model.get_Task(InitialPosition);
 
 ZeroOrderDerivativeNodes = {IC_Task(1), IC_Task(1);
                             IC_Task(2), IC_Task(2);  
