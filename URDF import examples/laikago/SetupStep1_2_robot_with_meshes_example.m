@@ -1,4 +1,4 @@
-close all; clear;
+close all; clear; clear classes; clc
 SRD = SRDuserinterface;
 
 
@@ -34,7 +34,8 @@ SRD_LinkSet_Color(LinkArray, 'RL_calf', Color_3);
 SRD_LinkSet_Color(LinkArray, 'RL_foot', Color_2);
 % SRD_LinkSet_Color(LinkArray, 'RH_FOOT', Color_2);
 
-InitialPosition = [0, 0, pi/2,0, 0,pi/2, 0,0,pi/2,0,0,pi/2]';
+InitialPosition = [0, 0, pi/2, 0, 0, pi/2, 0, 0, pi/2, 0, 0, pi/2]';
+
 
 SRD_save(LinkArray, 'LinkArray');
 SRD_save(InitialPosition, 'InitialPosition');
