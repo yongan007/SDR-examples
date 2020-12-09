@@ -2,9 +2,7 @@ close all; clear; clear classes; clc
 SRD = SRDuserinterface;
 
 
-
-
-LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','./urdf/laikago.urdf','ParseSTL',true);
+LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','../robots_library/laika/urdf/laikago.urdf','ParseSTL',true);
 
 Color_0 = [1, 0, 0];
 Color_1 = [0.95, 0.5, 0.3];

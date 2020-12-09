@@ -9,7 +9,7 @@ LinkArray = SRD_get('LinkArray');
 SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', false);
 SymbolicEngine.InitializeLinkArray();
 
-SRD_dynamics_derive_JacobiansForLinkArray('SymbolicEngine', SymbolicEngine);
+SRD_dynamics_derive_JacobiansForLinkArray('SymbolicEngine', SymbolicEngine)
 
 H = SRD_dynamics_derive_JSIM('SymbolicEngine', SymbolicEngine);
 
