@@ -11,12 +11,14 @@ ZeroOrderDerivativeNodes = {IC_Task(1), IC_Task(1);
                             IC_Task(4), IC_Task(4)+0.03;  
                             IC_Task(5), IC_Task(5)-0.035;  
                             IC_Task(6), IC_Task(6)+0.02}; 
+                        
 FirstOrderDerivativeNodes = {0, 0; 
                              0, 0;  
                              0, 0;  
                              0, 0;  
                              0, 0;  
                              0, 0}; 
+                         
 SecondOrderDerivativeNodes = {0, 0; 
                               0, 0; 
                               0, 0;  
