@@ -21,8 +21,7 @@ SRD = SRDuserinterface;
 % Torso.SetUsedGenCoordinates(3);
 
 
-LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','./urdf/iiwa14.urdf','ParseSTL',true);
-% LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','./urdf/cheetah.urdf','ParseSTL',true);
+LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','../robots_library/iiwa/iiwa14.urdf','ParseSTL',true);
 
 Color_0 = [1, 0, 0];
 Color_1 = [0.95, 0.5, 0.3];
