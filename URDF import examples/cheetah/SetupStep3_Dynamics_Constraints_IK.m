@@ -5,7 +5,7 @@ clc;
 % Dynamics
 
 LinkArray = SRD_get('LinkArray');
-
+% 
 SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', true);
 SymbolicEngine.InitializeLinkArray();
 
@@ -98,8 +98,8 @@ SRD_save(Handler_Constraints_Model, 'Handler_Constraints_Model');
 CoM = SRD_get_CoM_ForLinkArray('SymbolicEngine', SymbolicEngine);
 
 
-Task = [constraint; CoM]; 
-
+% Task = [constraint; CoM]; 
+Task =[CoM; constraint];
 %%%%%%%%%
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...

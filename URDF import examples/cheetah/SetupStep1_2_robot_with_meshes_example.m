@@ -3,11 +3,11 @@ SRD = SRDuserinterface;
 
 
 LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','../robots_library/cheetah/urdf/cheetah.urdf','ParseSTL',true);
-
 Color_0 = [1, 0, 0];
 Color_1 = [0.95, 0.5, 0.3];
 Color_2 = [0.00, 0.00, 0.00];
 Color_3 = [0.1, 0.1, 0.1];
+
 
 SRD_LinkSet_Color(LinkArray, 'trunk', Color_0);
 SRD_LinkSet_Color(LinkArray, 'FR_hip', Color_1);
@@ -31,6 +31,7 @@ SRD_LinkSet_Color(LinkArray, 'RL_thigh', Color_1);
 SRD_LinkSet_Color(LinkArray, 'RL_calf', Color_3);
 SRD_LinkSet_Color(LinkArray, 'RL_foot', Color_2);
 % SRD_LinkSet_Color(LinkArray, 'RH_FOOT', Color_2);
+
 
 InitialPosition = zeros(12,1);
 % InitialPosition = [0, 0, pi/2, 0, 0, pi/2, 0, 0, pi/2, 0, 0, pi/2]';
