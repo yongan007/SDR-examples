@@ -31,8 +31,9 @@ Handler_dynamics_Linear_model_evaluator = SRD_get_handler__dynamics_Linear_model
 % %
 
 dt = 0.001;
+% tf=0.5;
 tf = Handler_IK_Solution.TimeExpiration;
-% tf = 0.15;
+% tf = 0.30;
 
 Handler_Simulation = SRD_get_handler__Simulation(...
     'TimeLog', 0:dt:tf);
@@ -47,6 +48,7 @@ Handler_Simulation = SRD_get_handler__Simulation(...
 %     'static_q',  InitialPosition, ...
 %     'dof_robot', Handler_dynamics_generalized_coordinates_model.dof_configuration_space_robot);
 % 
+
 Handler_Desired_State = SRD_get_handler__desired_state(...
     'Handler_ControlInput', Handler_IK_Solution, ...
     'Handler_Simulation',   Handler_Simulation);
@@ -93,14 +95,15 @@ Handler_LQR = SRD_get_handler__Constrained_LQR_Controller(...
     'Handler_dynamics_Linearized_Model', Handler_dynamics_Linear_model_evaluator, ...
     'Handler_Simulation', Handler_Simulation, ...
     'Handler_InverseDynamics', Handler_InverseDynamics, ...
-    'Q', 10*eye(Handler_dynamics_Linear_model_evaluator.dof_robot_StateSpace), ...
+    'Q', 50*eye(Handler_dynamics_Linear_model_evaluator.dof_robot_StateSpace), ...
     'R', 1*eye(Handler_dynamics_Linear_model_evaluator.dof_control));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %
 
-% MainController = Handler_ComputedTorqueController;
-MainController = Handler_LQR;
+MainController = Handler_ComputedTorqueController;
+% MainController = Handler_InverseDynamics;
+% MainController = Handler_LQR;
 
 Handler_dynamics_Linear_model_evaluator.Handler_Controller = Handler_InverseDynamics;
 
@@ -147,7 +150,7 @@ Handler_Simulation.PreprocessingHandlersArray = {Handler_Desired_State, Handler_
     Handler_dynamics_GC_model_evaluator};
 % Handler_Simulation.PreprocessingHandlersArray = {Handler_Desired_State, Handler_State_StateSpace, Handler_Desired_State_StateSpace, ...
 %     Handler_dynamics_GC_model_evaluator};
-Handler_Simulation.ControllerArray = {Handler_InverseDynamics, Handler_dynamics_Linear_model_evaluator, Handler_LQR};
+Handler_Simulation.ControllerArray = {Handler_InverseDynamics, Handler_dynamics_Linear_model_evaluator, MainController};
 % Handler_Simulation.ControllerArray = {Handler_InverseDynamics, Handler_ComputedTorqueController};
 % Handler_Simulation.SolverArray = {Handler_solver_Taylor};
 Handler_Simulation.SolverArray = {Handler_solver_TaylorConstrained};
@@ -178,15 +181,22 @@ drawnow;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 
-ToAnimate = false;
 
+ToAnimate = true;
+LinkArray = SRD_get('LinkArray');
+Chain = SRD_Chain(LinkArray);
+%  
+SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', true);
+SymbolicEngine.InitializeLinkArray();
+ 
 if ToAnimate
-DrawRobot_function = SRD_DrawRobot_get_function('DrawRobot_Type', 'Default', ... %'Default' or 'STL' or 'Custom'
+SRD__make_default_scene('STL')
+DrawRobot_function = SRD_DrawRobot_get_function('DrawRobot_Type', 'STL', ... %'Default' or 'STL' or 'Custom'
     'DrawRobot_Custom_handle', [], ...
     'Function_Type', 'DrawGivenPosition', ... %'DrawGivenPosition' or 'DrawInitialPosition'  or 'DrawCurrentPosition'
-    'SimulationEngine', [], ...
-    'FileName_visuals_config', []); %use default visuals
-
+    'Chain', Chain ...
+    ); %use default visuals
+ 
 SRD__animate__vanilla('Handler_Simulation', Handler_Simulation, ...
     'Handler_Logger', Handler_State_Logger_vanilla, ...
     'AnimationTimeLog', 0:10*dt:tf, ...
@@ -195,6 +205,5 @@ SRD__animate__vanilla('Handler_Simulation', Handler_Simulation, ...
     'FigureName', 'Animation', ...
     'FileName_visuals_config', []);
 end
-
 
 

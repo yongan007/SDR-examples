@@ -19,6 +19,7 @@ SRD_LinkSet_Color(LinkArray, 'FL_hip', Color_1);
 SRD_LinkSet_Color(LinkArray, 'FL_thigh_shoulder', Color_1);
 SRD_LinkSet_Color(LinkArray, 'FL_thigh', Color_1);
 SRD_LinkSet_Color(LinkArray, 'FL_calf', Color_3);
+
 SRD_LinkSet_Color(LinkArray, 'FL_foot', Color_2);
 SRD_LinkSet_Color(LinkArray, 'RR_hip', Color_1);
 SRD_LinkSet_Color(LinkArray, 'RR_thigh_shoulder', Color_1);

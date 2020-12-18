@@ -70,7 +70,7 @@ SRD_save(Handler_dynamics_Linearized_Model, 'Handler_dynamics_Linearized_Model')
 
 %%%%%%%%%%%%
 %construct constraint
-constraint = SymbolicEngine.LinkArray(9).AbsoluteFollower(:, 1);
+constraint = SymbolicEngine.LinkArray(8).AbsoluteFollower(:, 1);
 %%%%%%%%%
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...
@@ -99,7 +99,7 @@ CoM = SRD_get_CoM_ForLinkArray('SymbolicEngine', SymbolicEngine);
 
 
 % Task = [constraint; CoM]; 
-Task =[CoM; constraint];
+Task =[constraint; CoM];
 %%%%%%%%%
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...

@@ -41,8 +41,6 @@ Handler_Simulation = SRD_get_handler__Simulation(...
 % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
 % Handler_Desired_State = SRD_get_handler__desired_state_static(...
 %     'static_q',  InitialPosition, ...
 %     'dof_robot', Handler_dynamics_generalized_coordinates_model.dof_configuration_space_robot);
@@ -177,16 +175,21 @@ drawnow;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-
-ToAnimate = false;
-
+ToAnimate = true;
+LinkArray = SRD_get('LinkArray');
+Chain = SRD_Chain(LinkArray);
+ 
+SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', true);
+SymbolicEngine.InitializeLinkArray();
+ 
 if ToAnimate
+SRD__make_default_scene('Default')
 DrawRobot_function = SRD_DrawRobot_get_function('DrawRobot_Type', 'Default', ... %'Default' or 'STL' or 'Custom'
     'DrawRobot_Custom_handle', [], ...
     'Function_Type', 'DrawGivenPosition', ... %'DrawGivenPosition' or 'DrawInitialPosition'  or 'DrawCurrentPosition'
-    'SimulationEngine', [], ...
-    'FileName_visuals_config', []); %use default visuals
-
+    'Chain', Chain ...
+    ); %use default visuals
+ 
 SRD__animate__vanilla('Handler_Simulation', Handler_Simulation, ...
     'Handler_Logger', Handler_State_Logger_vanilla, ...
     'AnimationTimeLog', 0:10*dt:tf, ...
@@ -195,6 +198,5 @@ SRD__animate__vanilla('Handler_Simulation', Handler_Simulation, ...
     'FigureName', 'Animation', ...
     'FileName_visuals_config', []);
 end
-
 
 

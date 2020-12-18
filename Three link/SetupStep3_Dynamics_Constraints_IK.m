@@ -67,7 +67,7 @@ SRD_save(Handler_dynamics_Linearized_Model, 'Handler_dynamics_Linearized_Model')
 
 %%%%%%%%%%%%
 %construct constraint
-constraint = SymbolicEngine.LinkArray(4).AbsoluteFollower(3);
+constraint = SymbolicEngine.LinkArray(4).AbsoluteFollower(2);
 %%%%%%%%%
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...
@@ -91,8 +91,8 @@ SRD_save(Handler_Constraints_Model, 'Handler_Constraints_Model');
 
 %%%%%%%%%%%%
 %construct inverse kinematics task
-% rC = SymbolicEngine.GetCoM;
-Task = [SymbolicEngine.q(1); SymbolicEngine.q(2); constraint]; 
+CoM = SRD_get_CoM_ForLinkArray('SymbolicEngine', SymbolicEngine);
+Task = [CoM; constraint]; 
 %%%%%%%%%
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...
