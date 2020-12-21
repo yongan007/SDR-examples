@@ -6,7 +6,7 @@ clc;
 
 LinkArray = SRD_get('LinkArray');
 
-SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', false);
+SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', true);
 SymbolicEngine.InitializeLinkArray();
 
 SRD_dynamics_derive_JacobiansForLinkArray('SymbolicEngine', SymbolicEngine);
@@ -69,6 +69,7 @@ SRD_save(Handler_dynamics_Linearized_Model, 'Handler_dynamics_Linearized_Model')
 %construct constraint
 constraint = SymbolicEngine.LinkArray(4).AbsoluteFollower(2);
 %%%%%%%%%
+% constraint = sin(SymbolicEngine.q(1));
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...
     'Task',                                   constraint, ...
@@ -83,7 +84,8 @@ description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', Symboli
 
 
 Handler_Constraints_Model = SRD_get_handler__Constraints_model('description', description, ...
-    'dof_robot', SymbolicEngine.dof);
+    'dof_robot', SymbolicEngine.dof)
+
 SRD_save(Handler_Constraints_Model, 'Handler_Constraints_Model');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

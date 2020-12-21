@@ -31,9 +31,9 @@ Handler_dynamics_Linear_model_evaluator = SRD_get_handler__dynamics_Linear_model
 % %
 
 dt = 0.001;
-% tf=0.5;
-tf = Handler_IK_Solution.TimeExpiration;
-% tf = 0.30;
+tf=2.0;
+% tf = Handler_IK_Solution.TimeExpiration;
+% tf = 2.0;
 
 Handler_Simulation = SRD_get_handler__Simulation(...
     'TimeLog', 0:dt:tf);
@@ -95,7 +95,7 @@ Handler_LQR = SRD_get_handler__Constrained_LQR_Controller(...
     'Handler_dynamics_Linearized_Model', Handler_dynamics_Linear_model_evaluator, ...
     'Handler_Simulation', Handler_Simulation, ...
     'Handler_InverseDynamics', Handler_InverseDynamics, ...
-    'Q', 50*eye(Handler_dynamics_Linear_model_evaluator.dof_robot_StateSpace), ...
+    'Q', 10*eye(Handler_dynamics_Linear_model_evaluator.dof_robot_StateSpace), ...
     'R', 1*eye(Handler_dynamics_Linear_model_evaluator.dof_control));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,8 +130,6 @@ Handler_solver_TaylorConstrained = SRD_get_handler__solver_TaylorConstrained(...
     'Handler_Simulation', Handler_Simulation, ...
     'Handler_Constraints_Model', Handler_Constraints_Model);
 
-
-
 % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Handler_State_Logger_vanilla = SRD_get_handler__State_Logger__vanilla(...
@@ -150,8 +148,8 @@ Handler_Simulation.PreprocessingHandlersArray = {Handler_Desired_State, Handler_
     Handler_dynamics_GC_model_evaluator};
 % Handler_Simulation.PreprocessingHandlersArray = {Handler_Desired_State, Handler_State_StateSpace, Handler_Desired_State_StateSpace, ...
 %     Handler_dynamics_GC_model_evaluator};
-Handler_Simulation.ControllerArray = {Handler_InverseDynamics, Handler_dynamics_Linear_model_evaluator, MainController};
-% Handler_Simulation.ControllerArray = {Handler_InverseDynamics, Handler_ComputedTorqueController};
+% Handler_Simulation.ControllerArray = {Handler_InverseDynamics, Handler_dynamics_Linear_model_evaluator, Handler_LQR};
+Handler_Simulation.ControllerArray = {Handler_InverseDynamics, Handler_ComputedTorqueController};
 % Handler_Simulation.SolverArray = {Handler_solver_Taylor};
 Handler_Simulation.SolverArray = {Handler_solver_TaylorConstrained};
 Handler_Simulation.LoggerArray = {Handler_State_Logger_vanilla, Handler_SimulationTickDisplay};
