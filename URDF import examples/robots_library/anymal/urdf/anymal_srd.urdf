@@ -17,6 +17,11 @@
       </joint>
     <!-- Base link -->  
     <link name="base">    
+        <inertial>      
+            <origin rpy="0 0 0" xyz="-0.001960558279 -0.001413217745 0.050207125344"/>      
+            <mass value="16.793507758"/>      
+            <inertia ixx="0.217391101503" ixy="-0.00132873239126" ixz="-0.00228200226173" iyy="0.639432546734" iyz="-0.00138078263145" izz="0.62414077654"/>    
+        </inertial>  
         <visual>      
             <origin rpy="0 0 0" xyz="0 0 0"/>      
             <geometry>        

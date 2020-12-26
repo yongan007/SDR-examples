@@ -67,7 +67,7 @@ SRD_save(Handler_dynamics_Linearized_Model, 'Handler_dynamics_Linearized_Model')
 
 %%%%%%%%%%%%
 %construct constraint
-constraint = SymbolicEngine.LinkArray(4).AbsoluteFollower(2);
+constraint = SymbolicEngine.LinkArray(4).AbsoluteFollower(:);
 %%%%%%%%%
 % constraint = sin(SymbolicEngine.q(1));
 

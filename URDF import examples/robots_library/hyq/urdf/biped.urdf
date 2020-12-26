@@ -1,5 +1,10 @@
 <robot name="biped">
     <link name="base">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <mass value="0.5"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.006"/>
+      </inertial>
 	    <visual>
 	      <geometry>
 	        <box size="0.30 0.30 0.30"/>
@@ -9,7 +14,7 @@
 	      </material>
 	    </visual>        
     </link>
-    
+
     <!-- LEFT LEG -->
     <link name="L_hipassembly">
 	    <visual>
@@ -18,7 +23,12 @@
 	        <mesh filename="../meshes/leg/hipassembly.stl" scale="1 1 1"/>
 	      </geometry>
 	      <material name="white"/>
-	    </visual>        
+	    </visual>  
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.022191 0.015144 -1.5e-05"/>
+      <mass value="1.993"/>
+      <inertia ixx="0.002903894" ixy="-7.185e-05" ixz="-1.262e-06" iyy="0.004907517" iyz="-1.75e-06" izz="0.005586944"/>
+    </inertial>      
     </link>
     <link name="L_upperleg">
 	    <visual>
@@ -28,6 +38,12 @@
 	      </geometry>
 	      <material name="blue"/>
 	    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.022191 0.015144 -1.5e-05"/>
+      <mass value="1.993"/>
+      <inertia ixx="0.002903894" ixy="-7.185e-05" ixz="-1.262e-06" iyy="0.004907517" iyz="-1.75e-06" izz="0.005586944"/>
+    </inertial>
+
     </link>
     <link name="L_lowerleg">
 	    <visual>
@@ -35,7 +51,12 @@
 	        <mesh filename="../meshes/leg/lowerleg.stl" scale="1 1 1"/>
 	      </geometry>
 	      <material name="blue"/>
-	    </visual>        
+	    </visual>    
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.022191 0.015144 -1.5e-05"/>
+      <mass value="1.993"/>
+      <inertia ixx="0.002903894" ixy="-7.185e-05" ixz="-1.262e-06" iyy="0.004907517" iyz="-1.75e-06" izz="0.005586944"/>
+    </inertial>    
     </link>
     
     <joint name="L_haa_joint" type="revolute">
@@ -70,7 +91,13 @@
           <mesh filename="../meshes/leg/hipassembly.stl" scale="1 1 1"/>
         </geometry>
         <material name="white"/>
-      </visual>        
+      </visual>   
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.022191 0.015144 -1.5e-05"/>
+      <mass value="1.993"/>
+      <inertia ixx="0.002903894" ixy="-7.185e-05" ixz="-1.262e-06" iyy="0.004907517" iyz="-1.75e-06" izz="0.005586944"/>
+    </inertial>
+
     </link>
     <link name="R_upperleg">
       <visual>
@@ -80,6 +107,11 @@
         </geometry>
         <material name="blue"/>
       </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.022191 0.015144 -1.5e-05"/>
+      <mass value="1.993"/>
+      <inertia ixx="0.002903894" ixy="-7.185e-05" ixz="-1.262e-06" iyy="0.004907517" iyz="-1.75e-06" izz="0.005586944"/>
+    </inertial>
     </link>
     <link name="R_lowerleg">
       <visual>
@@ -87,7 +119,8 @@
           <mesh filename="../meshes/leg/lowerleg.stl" scale="1 1 1"/>
         </geometry>
         <material name="blue"/>
-      </visual>        
+      </visual>  
+  
     </link>
     
     <joint name="R_haa_joint" type="revolute">
