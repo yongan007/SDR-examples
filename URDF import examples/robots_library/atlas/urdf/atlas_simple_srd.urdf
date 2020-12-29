@@ -1131,7 +1131,7 @@
     </collision>
   </link>
   -->
-  <!-- <joint name="hokuyo_joint" type="fixed">
+  <joint name="hokuyo_joint" type="continuous">
     <origin rpy="0 0 0" xyz="-0.0446 0 0.0880"/>
     <parent link="head"/>
     <child link="hokuyo_link"/>
@@ -1212,7 +1212,7 @@
     <child link="left_camera_optical_frame"/>
   </joint>
   <link name="left_camera_optical_frame"/>
-  <!-- <gazebo reference="left_camera_frame"> -->
+  <gazebo reference="left_camera_frame">
     <sensor name="stereo_camera" type="multicamera">
       <!-- see MultiSenseSLPlugin.h for available modes -->
       <update_rate>30.0</update_rate>
@@ -1420,6 +1420,6 @@
           </accel>
         </noise>
       </imu>
-    </sensor> -->
+    </sensor>
   </gazebo>
 </robot>

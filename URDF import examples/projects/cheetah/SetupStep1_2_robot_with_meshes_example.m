@@ -2,7 +2,7 @@ close all; clear; clear classes; clc
 SRD = SRDuserinterface;
 
 
-LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','../robots_library/cheetah/urdf/cheetah.urdf','ParseSTL',true);
+LinkArray = SRD_GetLinkArrayFromURDF('UrdfFilePath','../../robots_library/cheetah/urdf/cheetah.urdf','ParseSTL',true);
 Color_0 = [1, 0, 0];
 Color_1 = [0.95, 0.5, 0.3];
 Color_2 = [0.00, 0.00, 0.00];

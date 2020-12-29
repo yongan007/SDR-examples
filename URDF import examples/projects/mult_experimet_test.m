@@ -1,24 +1,29 @@
 close all; clc; clear all;
 
-path{1} = 'aliengo'; %% 4 legs
-path{2} = 'cheetah';
-path{3} = 'laikago';
-path{4} = 'anymal';
-path{5} = 'hyq_biped'; %% 2legs
-path{6} = 'hexapod';    %%6 legs
+path{1} = 'anymal';
 
+path{2} = 'aliengo'; %% 4 legs
+path{3} = 'cheetah';
+% path{3} = 'anymal';
+path{4} = 'laikago';
+path{5} = 'hexapod';    %%6 legs
+
+controllers = {'CTC', 'CLQR','Nested_QP'};
+% controllers = {'Nested_QP'};
+
+metric = zeros(length(path),1);
 omega = 25;
 
 parameters.Kp = omega^2;
-parameters.Kd = 2* omega;
-
+parameters.Kd = 2*omega;
 
 
 for i = 1:length(path)
-    current_dir = pwd;
-    cd(path{i});
-    
-    SetupStep5_Simulation(parameters);
-    
-    cd(current_dir);
+    for j =1: length(controllers)
+        current_dir = pwd;
+        cd(path{i});
+        [mse]=SetupStep5_Simulation(parameters, controllers(j));
+        metric(i,j) = mse
+        cd(current_dir);
+    end
 end

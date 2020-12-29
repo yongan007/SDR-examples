@@ -85,7 +85,7 @@ c41 = SymbolicEngine.LinkArray(21).AbsoluteFollower(2);
 % c2= SymbolicEngine.q(6);
 % c3= SymbolicEngine.q(9);
 
-constraint =[c3];
+constraint =[c1;c2];
 
 %%%%%%%%%
 % constraint = [SymbolicEngine.q(3);SymbolicEngine.q(4);SymbolicEngine.q(5)];
@@ -115,7 +115,7 @@ SRD_save(Handler_Constraints_Model, 'Handler_Constraints_Model');
 CoM = SRD_get_CoM_ForLinkArray('SymbolicEngine', SymbolicEngine);
 
 
-Task = [c1;c2;CoM]; 
+Task = [c3;CoM]; 
 % Task = [constraint]; 
 
 %%%%%%%%%

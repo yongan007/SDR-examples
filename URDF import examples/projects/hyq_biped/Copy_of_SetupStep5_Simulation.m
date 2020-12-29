@@ -102,7 +102,7 @@ Handler_LQR = SRD_get_handler__Constrained_LQR_Controller(...
 % MainController = Handler_ComputedTorqueController;
 MainController = Handler_LQR;
 
-Handler_dynamics_Linear_model_evaluator.Handler_Controller = Handler_InverseDynamics;
+% Handler_dynamics_Linear_model_evaluator.Handler_Controller = Handler_InverseDynamics;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %
