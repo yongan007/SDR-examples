@@ -58,7 +58,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/trunk.stl"/>
+        <mesh filename="../meshes/trunk.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -71,7 +71,7 @@
     <!-- <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="../meshes/trunk.stl"/>
+                <mesh filename="../meshes/trunk.stl" scale="1 1 1"/>
             </geometry>
         </collision> -->
     <inertial>
@@ -111,13 +111,13 @@
     <child link="FR_hip"/>
     <axis xyz="1 0 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" lower="-1.2217304764" upper="1.2217304764" velocity="20"/>
+    <limit effort="44.4" lower="-1.2217304764" upper="1.2217304764" velocity="40"/>
   </joint>
   <link name="FR_hip">
     <visual>
       <origin rpy="3.14159265359 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/hip.stl"/>
+        <mesh filename="../meshes/hip.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -153,13 +153,13 @@
     <child link="FR_thigh"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" velocity="20"/>
+    <limit effort="44.4" velocity="40"/>
   </joint>
   <link name="FR_thigh">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/thigh_mirror.stl"/>
+        <mesh filename="../meshes/thigh_mirror.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -181,13 +181,13 @@
     <child link="FR_calf"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="55" lower="-2.77507351067" upper="-0.645771823238" velocity="16"/>
+    <limit effort="44.4" lower="-2.77507351067" upper="-0.645771823238" velocity="40"/>
   </joint>
   <link name="FR_calf">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/calf.stl"/>
+        <mesh filename="../meshes/calf.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -263,13 +263,13 @@
     <child link="FL_hip"/>
     <axis xyz="1 0 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" lower="-1.2217304764" upper="1.2217304764" velocity="20"/>
+    <limit effort="44.4" lower="-1.2217304764" upper="1.2217304764" velocity="40"/>
   </joint>
   <link name="FL_hip">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/hip.stl"/>
+        <mesh filename="../meshes/hip.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -305,13 +305,13 @@
     <child link="FL_thigh"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" velocity="20"/>
+    <limit effort="44.4" velocity="40"/>
   </joint>
   <link name="FL_thigh">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/thigh.stl"/>
+        <mesh filename="../meshes/thigh.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -333,13 +333,13 @@
     <child link="FL_calf"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="55" lower="-2.77507351067" upper="-0.645771823238" velocity="16"/>
+    <limit effort="44.4" lower="-2.77507351067" upper="-0.645771823238" velocity="40"/>
   </joint>
   <link name="FL_calf">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/calf.stl"/>
+        <mesh filename="../meshes/calf.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -415,13 +415,13 @@
     <child link="RR_hip"/>
     <axis xyz="1 0 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" lower="-1.2217304764" upper="1.2217304764" velocity="20"/>
+    <limit effort="44.4" lower="-1.2217304764" upper="1.2217304764" velocity="40"/>
   </joint>
   <link name="RR_hip">
     <visual>
       <origin rpy="3.14159265359 3.14159265359 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/hip.stl"/>
+        <mesh filename="../meshes/hip.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -457,13 +457,13 @@
     <child link="RR_thigh"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" velocity="20"/>
+    <limit effort="44.4" velocity="40"/>
   </joint>
   <link name="RR_thigh">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/thigh_mirror.stl"/>
+        <mesh filename="../meshes/thigh_mirror.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -485,13 +485,13 @@
     <child link="RR_calf"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="55" lower="-2.77507351067" upper="-0.645771823238" velocity="16"/>
+    <limit effort="44.4" lower="-2.77507351067" upper="-0.645771823238" velocity="40"/>
   </joint>
   <link name="RR_calf">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/calf.stl"/>
+        <mesh filename="../meshes/calf.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -567,13 +567,13 @@
     <child link="RL_hip"/>
     <axis xyz="1 0 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" lower="-1.2217304764" upper="1.2217304764" velocity="20"/>
+    <limit effort="44.4" lower="-1.2217304764" upper="1.2217304764" velocity="40"/>
   </joint>
   <link name="RL_hip">
     <visual>
       <origin rpy="0 3.14159265359 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/hip.stl"/>
+        <mesh filename="../meshes/hip.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -609,13 +609,13 @@
     <child link="RL_thigh"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="44" velocity="20"/>
+    <limit effort="44.4" velocity="40"/>
   </joint>
   <link name="RL_thigh">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/thigh.stl"/>
+        <mesh filename="../meshes/thigh.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
@@ -637,13 +637,13 @@
     <child link="RL_calf"/>
     <axis xyz="0 1 0"/>
     <dynamics damping="0" friction="0"/>
-    <limit effort="55" lower="-2.77507351067" upper="-0.645771823238" velocity="16"/>
+    <limit effort="44.4" lower="-2.77507351067" upper="-0.645771823238" velocity="40"/>
   </joint>
   <link name="RL_calf">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/calf.stl"/>
+        <mesh filename="../meshes/calf.stl" scale="1 1 1"/>
       </geometry>
       <material name="orange"/>
     </visual>
