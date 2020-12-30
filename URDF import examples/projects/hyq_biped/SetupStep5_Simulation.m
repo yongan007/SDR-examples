@@ -172,13 +172,13 @@ Handler_Simulation.Simulate();
 
 desired = Handler_Desired_State;
 output = Handler_State_Logger_vanilla;
-
+N = length(Handler_State_Logger_vanilla.Log.q);
 n_joints=Handler_Desired_State.dof_robot;
 answer = zeros(n_joints,1);
 for ii=1:n_joints
     answer(ii,1)=norm(output.Log.q(1:end-1,ii)-desired.q(ii));
 end
-mse = sum(answer);
+mse = sum(answer)/N;
 
 % SRD_save(Handler_State_Logger_vanilla, 'Handler_State_Logger_vanilla');
 % SRD_save(Handler_Desired_State, 'Handler_Desired_State');
