@@ -40,8 +40,9 @@ n = Handler_dynamics_generalized_coordinates_model.dof_configuration_space_robot
     'TimeTable', time_table);
 
 % n_constrained = 5;
-[N_table, G_table] = SRD_ConstraintsModel_GenerateTable(...
+[N_table, G_table, F_table] = SRD_ConstraintsModel_GenerateTable(...
     'Handler_Constraints_Model', Handler_Constraints_Model, ...
+    'Handler_dynamics_generalized_coordinates_model', Handler_dynamics_generalized_coordinates_model, ...
     'x_table', x_table, ...
     'new_dimentions', []);
 % n_constrained = size(N_table, 2);
@@ -50,10 +51,10 @@ n = Handler_dynamics_generalized_coordinates_model.dof_configuration_space_robot
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Controllers
 
-% Q = 100*eye(2 * n);
-% R = 0.01*eye(Handler_dynamics_generalized_coordinates_model.dof_control);
-% Count = size(A_table, 3);
-% K_table = SRD_LQR_GenerateTable(A_table, B_table, repmat(Q, [1, 1, Count]), repmat(R, [1, 1, Count]))
+Q = 100*eye(2 * n);
+R = 0.01*eye(Handler_dynamics_generalized_coordinates_model.dof_control);
+Count = size(A_table, 3);
+K_table = SRD_LQR_GenerateTable(A_table, B_table, repmat(Q, [1, 1, Count]), repmat(R, [1, 1, Count]));
 
 
 % K_table = SRD_CTC_GenerateTable('Handler_dynamics_generalized_coordinates_model', Handler_dynamics_generalized_coordinates_model, ...
@@ -61,10 +62,10 @@ n = Handler_dynamics_generalized_coordinates_model.dof_configuration_space_robot
 %     'Kp', 200*eye(n), 'Kd', 100*eye(n), 'TimeTable', time_table);
 
 
-Q = 100*eye(2 * n);
-R = 0.01*eye(Handler_dynamics_generalized_coordinates_model.dof_control);
-Count = size(A_table, 3);
-K_table = SRD_CLQR_GenerateTable(A_table, B_table, repmat(Q, [1, 1, Count]), repmat(R, [1, 1, Count]), N_table);
+% Q = 100*eye(2 * n);
+% R = 0.01*eye(Handler_dynamics_generalized_coordinates_model.dof_control);
+% Count = size(A_table, 3);
+% K_table = SRD_CLQR_GenerateTable(A_table, B_table, repmat(Q, [1, 1, Count]), repmat(R, [1, 1, Count]), N_table);
 
 
 % %
@@ -73,16 +74,10 @@ K_table = SRD_CLQR_GenerateTable(A_table, B_table, repmat(Q, [1, 1, Count]), rep
 
 % %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ode_fnc_handle = SRD_get_ode_fnc_from_ClosedLoopLinearSystem(AA_table, cc_table, time_table);
+% ode_fnc_handle = SRD_get_ode_fnc_from_ClosedLoopLinearSystem(AA_table, cc_table, time_table);
 
-% ode_fnc_handle = SRD_get_ode_fnc_from__dynamics_Linearized_Model(...
-%     'Handler_dynamics_generalized_coordinates_model', Handler_dynamics_generalized_coordinates_model, ...
-%     'Handler_dynamics_Linearized_Model', Handler_dynamics_Linearized_Model, ...
-%     'K_table', K_table, ...
-%     'x_table', x_table, ...
-%     'u_table', u_table, ...
-%     'time_table', time_table);
-
+ode_fnc_handle = SRD_get_ode_fnc_from_ClosedLoopConstrainedLinearSystem...
+    (AA_table, cc_table, G_table, F_table, time_table);
 
 
 x0 = [InitialPosition; zeros(size(InitialPosition))];
