@@ -9,10 +9,12 @@ ZeroOrderDerivativeNodes = {IC_Task(1), IC_Task(1)-0.15;
                             IC_Task(2), IC_Task(2)+0.15;  
                             IC_Task(3), IC_Task(3)}; 
 FirstOrderDerivativeNodes = {0, 0; 
-                             0, 0; 
+%                              0, 0; 
+                             0, 0;
                              0, 0}; 
 SecondOrderDerivativeNodes = {0, 0; 
-                              0, 0; 
+%                               0, 0; 
+                              0, 0;
                               0, 0}; 
 
 TimeOfOneStage = 2;

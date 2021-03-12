@@ -85,8 +85,14 @@ x0 = [InitialPosition; zeros(size(InitialPosition))];
 [time_table_0, solution_tape] = ode45(ode_fnc_handle, [0, tf], x0);
 
 figure('Color', 'w')
-plot(time_table_0, solution_tape, 'LineWidth', 3); hold on;
-plot(time_table', x_table', '--', 'LineWidth', 1);
+% % solution_tape ===actual state
+
+plot(time_table_0, solution_tape(:,1:n), 'LineWidth', 3)
+figure('Color', 'w')
+
+plot(time_table_0, solution_tape(:,n+1:n*2), 'LineWidth', 3);
+% % desired
+% plot(time_table', x_table', '--', 'LineWidth', 1);
 
 % figure('Color', 'w')
 % plot(time_table, cc_table, 'LineWidth', 3); hold on;
