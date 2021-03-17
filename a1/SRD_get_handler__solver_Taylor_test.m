@@ -45,7 +45,7 @@ Handler_solver_Taylor.PreSerializationPrepFunction = @PreSerializationPrepFuncti
         a = H \ (T*u - c);
         %a = pinv(H) * (T*u - c);
         
-        c
+%         c
         
         v = v + dt * a;
         q = q + dt * v + 0.5 * dt^2 * a;

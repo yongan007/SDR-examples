@@ -66,6 +66,6 @@ DrawRobot_function = SRD_DrawRobot_get_function('DrawRobot_Type', 'STL', ... %'D
     'Function_Type', 'DrawGivenPosition', ... %'DrawGivenPosition' or 'DrawInitialPosition'  or 'DrawCurrentPosition'
     'Chain', Chain);
 
-DrawRobot_function(InitialPosition, [])
-SRD__make_default_scene('STL')
+DrawRobot_function(InitialPosition, []);
+SRD__make_default_scene('STL');
             

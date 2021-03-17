@@ -1,4 +1,4 @@
-close all; clear classes; clc;
+close all; clear; clc;
 
 InitialPosition = SRD_get('InitialPosition');
 
@@ -92,7 +92,7 @@ figure('Color', 'w')
 
 plot(time_table_0, solution_tape(:,n+1:n*2), 'LineWidth', 3);
 % % desired
-% plot(time_table', x_table', '--', 'LineWidth', 1);
+plot(time_table', x_table(1:3,:)', '--', 'LineWidth', 1);
 
 % figure('Color', 'w')
 % plot(time_table, cc_table, 'LineWidth', 3); hold on;

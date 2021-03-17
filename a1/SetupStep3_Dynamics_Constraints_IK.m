@@ -6,7 +6,7 @@ clc;
 
 LinkArray = SRD_get('LinkArray');
 
-SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', false);
+SymbolicEngine = SRDSymbolicEngine('LinkArray', LinkArray, 'Casadi', true);
 SymbolicEngine.InitializeLinkArray();
 
 SRD_dynamics_derive_JacobiansForLinkArray('SymbolicEngine', SymbolicEngine);
@@ -44,33 +44,32 @@ description = SRD_generate_dynamics_generalized_coordinates_model(...
 Handler_dynamics_generalized_coordinates_model = SRD_get_handler__dynamics_generalized_coordinates_model('description', description);
 SRD_save(Handler_dynamics_generalized_coordinates_model, 'Handler_dynamics_generalized_coordinates_model');
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Linearization
 
+description = SRD_generate_dynamics_linearization(...
+    'SymbolicEngine',                         SymbolicEngine, ...
+    'H', H, ...
+    'c', (in + g + d), ...
+    'T', T, ...
+    'Symbolic_ToOptimizeFunctions',           true, ...
+    'Casadi_cfile_name',                      'g_dynamics_linearization', ...
+    'FunctionName_A',                         'g_linearization_A', ...
+    'FunctionName_B',                         'g_linearizatioSRD_generate_second_derivative_Jacobiansn_B', ...
+    'FunctionName_c',                         'g_linearization_c', ...
+    'Path',                                   'Linearization/');
 
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % Linearization
-% 
-% description = SRD_generate_dynamics_linearization(...
-%     'SymbolicEngine',                         SymbolicEngine, ...
-%     'H', H, ...
-%     'c', (in + g + d), ...
-%     'T', T, ...
-%     'Symbolic_ToOptimizeFunctions',           true, ...
-%     'Casadi_cfile_name',                      'g_dynamics_linearization', ...
-%     'FunctionName_A',                         'g_linearization_A', ...
-%     'FunctionName_B',                         'g_linearization_B', ...
-%     'FunctionName_c',                         'g_linearization_c', ...
-%     'Path',                                   'Linearization/');
-% 
-% Handler_dynamics_Linearized_Model = SRD_get_handler__dynamics_linearized_model('description', description);
-% SRD_save(Handler_dynamics_Linearized_Model, 'Handler_dynamics_Linearized_Model');
+Handler_dynamics_Linearized_Model = SRD_get_handler__dynamics_linearized_model('description', description);
+SRD_save(Handler_dynamics_Linearized_Model, 'Handler_dynamics_Linearized_Model');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Copnstraints
+% Constraints
 
 %%%%%%%%%%%%
 %construct constraint
-constraint = SymbolicEngine.LinkArray(11).AbsoluteFollower(:, 1);
+constraint = SymbolicEngine.LinkArray(11).AbsoluteFollower(2);
+
+% constraintR = [SymbolicEngine.LinkArray(4).AbsoluteFollower(3)]; 
 %%%%%%%%%
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...
@@ -94,12 +93,8 @@ SRD_save(Handler_Constraints_Model, 'Handler_Constraints_Model');
 
 %%%%%%%%%%%%
 %construct inverse kinematics task
-
-CoM = SRD_get_CoM_ForLinkArray('SymbolicEngine', SymbolicEngine);
-
-% c1 = SymbolicEngine.LinkArray(10).AbsoluteFollower(:, 1);
-
-Task = [constraint]; 
+% rC = [SymbolicEngine.q(1);SymbolicEngine.q(2)];
+Task = SymbolicEngine.LinkArray(11).AbsoluteFollower(:); 
 %%%%%%%%%
 
 description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', SymbolicEngine, ...
@@ -114,8 +109,8 @@ description = SRD_generate_second_derivative_Jacobians('SymbolicEngine', Symboli
     'Path',                                      'InverseKinematics/');
 
 Handler_IK_Model = SRD_get_handler__IK_model('description', description, ...
-    'dof_robot', SymbolicEngine.dof, ...
-    'dof_Task', length(Task));
+    'dof_robot', SymbolicEngine.dof);
 SRD_save(Handler_IK_Model, 'Handler_IK_Model');
+
 
 

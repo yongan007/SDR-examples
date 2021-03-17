@@ -11386,7 +11386,7 @@ CASADI_SYMBOL_EXPORT int g_linearization_A_work(casadi_int *sz_arg, casadi_int* 
   return 0;
 }
 
-/* g_linearization_B:(q[3],v[3],iH[3x3])->(B[6x3]) */
+/* g_linearizatioSRD_generate_second_derivative_Jacobiansn_B:(q[3],v[3],iH[3x3])->(B[6x3]) */
 static int casadi_f1(const casadi_real** arg, casadi_real** res, casadi_int* iw, casadi_real* w, int mem) {
   casadi_real a0, a1;
   a0=0.;
@@ -11420,45 +11420,45 @@ static int casadi_f1(const casadi_real** arg, casadi_real** res, casadi_int* iw,
   return 0;
 }
 
-CASADI_SYMBOL_EXPORT int g_linearization_B(const casadi_real** arg, casadi_real** res, casadi_int* iw, casadi_real* w, int mem){
+CASADI_SYMBOL_EXPORT int g_linearizatioSRD_generate_second_derivative_Jacobiansn_B(const casadi_real** arg, casadi_real** res, casadi_int* iw, casadi_real* w, int mem){
   return casadi_f1(arg, res, iw, w, mem);
 }
 
-CASADI_SYMBOL_EXPORT int g_linearization_B_alloc_mem(void) {
+CASADI_SYMBOL_EXPORT int g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_alloc_mem(void) {
   return 0;
 }
 
-CASADI_SYMBOL_EXPORT int g_linearization_B_init_mem(int mem) {
+CASADI_SYMBOL_EXPORT int g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_init_mem(int mem) {
   return 0;
 }
 
-CASADI_SYMBOL_EXPORT void g_linearization_B_free_mem(int mem) {
+CASADI_SYMBOL_EXPORT void g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_free_mem(int mem) {
 }
 
-CASADI_SYMBOL_EXPORT int g_linearization_B_checkout(void) {
+CASADI_SYMBOL_EXPORT int g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_checkout(void) {
   return 0;
 }
 
-CASADI_SYMBOL_EXPORT void g_linearization_B_release(int mem) {
+CASADI_SYMBOL_EXPORT void g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_release(int mem) {
 }
 
-CASADI_SYMBOL_EXPORT void g_linearization_B_incref(void) {
+CASADI_SYMBOL_EXPORT void g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_incref(void) {
 }
 
-CASADI_SYMBOL_EXPORT void g_linearization_B_decref(void) {
+CASADI_SYMBOL_EXPORT void g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_decref(void) {
 }
 
-CASADI_SYMBOL_EXPORT casadi_int g_linearization_B_n_in(void) { return 3;}
+CASADI_SYMBOL_EXPORT casadi_int g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_n_in(void) { return 3;}
 
-CASADI_SYMBOL_EXPORT casadi_int g_linearization_B_n_out(void) { return 1;}
+CASADI_SYMBOL_EXPORT casadi_int g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_n_out(void) { return 1;}
 
-CASADI_SYMBOL_EXPORT casadi_real g_linearization_B_default_in(casadi_int i){
+CASADI_SYMBOL_EXPORT casadi_real g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_default_in(casadi_int i){
   switch (i) {
     default: return 0;
   }
 }
 
-CASADI_SYMBOL_EXPORT const char* g_linearization_B_name_in(casadi_int i){
+CASADI_SYMBOL_EXPORT const char* g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_name_in(casadi_int i){
   switch (i) {
     case 0: return "q";
     case 1: return "v";
@@ -11467,14 +11467,14 @@ CASADI_SYMBOL_EXPORT const char* g_linearization_B_name_in(casadi_int i){
   }
 }
 
-CASADI_SYMBOL_EXPORT const char* g_linearization_B_name_out(casadi_int i){
+CASADI_SYMBOL_EXPORT const char* g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_name_out(casadi_int i){
   switch (i) {
     case 0: return "B";
     default: return 0;
   }
 }
 
-CASADI_SYMBOL_EXPORT const casadi_int* g_linearization_B_sparsity_in(casadi_int i) {
+CASADI_SYMBOL_EXPORT const casadi_int* g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_sparsity_in(casadi_int i) {
   switch (i) {
     case 0: return casadi_s0;
     case 1: return casadi_s0;
@@ -11483,14 +11483,14 @@ CASADI_SYMBOL_EXPORT const casadi_int* g_linearization_B_sparsity_in(casadi_int 
   }
 }
 
-CASADI_SYMBOL_EXPORT const casadi_int* g_linearization_B_sparsity_out(casadi_int i) {
+CASADI_SYMBOL_EXPORT const casadi_int* g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_sparsity_out(casadi_int i) {
   switch (i) {
     case 0: return casadi_s3;
     default: return 0;
   }
 }
 
-CASADI_SYMBOL_EXPORT int g_linearization_B_work(casadi_int *sz_arg, casadi_int* sz_res, casadi_int *sz_iw, casadi_int *sz_w) {
+CASADI_SYMBOL_EXPORT int g_linearizatioSRD_generate_second_derivative_Jacobiansn_B_work(casadi_int *sz_arg, casadi_int* sz_res, casadi_int *sz_iw, casadi_int *sz_w) {
   if (sz_arg) *sz_arg = 3;
   if (sz_res) *sz_res = 1;
   if (sz_iw) *sz_iw = 0;

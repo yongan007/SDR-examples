@@ -2,7 +2,7 @@ clear; close all;
 
 %Get initial position
 InitialPosition = SRD_get('InitialPosition');
-Handler_IK_Model = SRD_get('Handler_IK_Model')
+Handler_IK_Model = SRD_get('Handler_IK_Model');
 
 % gaols_task = [0, 0, pi/4, 0, 0, pi/2, 0, 0, pi/2, 0, 0, pi/2]';
 
@@ -10,13 +10,13 @@ Handler_IK_Model = SRD_get('Handler_IK_Model')
 IC_Task = Handler_IK_Model.get_Task(InitialPosition);
 
 
-ZeroOrderDerivativeNodes = {IC_Task(1), 0.6;
+ZeroOrderDerivativeNodes = {IC_Task(1), 0.45;
                             IC_Task(2), IC_Task(2);  
                             IC_Task(3), 0.05};  
 %                             IC_Task(4), IC_Task(4);  
-%                             IC_Task(5), IC_Task(5)-IC_Task(5)*2;  %IC_Task(5)-IC_Task(5)*2
-%                             IC_Task(6), IC_Task(6)+IC_Task(5)*2}; %IC_Task(6)+IC_Task(5)*2};
-                        
+%                             IC_Task(5), IC_Task(5);  %IC_Task(5)-IC_Task(5)*2
+%                             IC_Task(6), IC_Task(6)}; %IC_Task(6)+IC_Task(5)*2};
+%                         
                         
 FirstOrderDerivativeNodes = {0, 0; 
                              0, 0;  
