@@ -21,9 +21,9 @@ Handler_Constraints_Model = SRD_get('Handler_Constraints_Model');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-tf = Handler_IK_Solution.TimeExpiration;
+tf = Handler_IK_Solution.State.TimeTable(end);
 % tf = 0.4;
-time_table = linspace(0,10,50);
+time_table = Handler_IK_Solution.State.TimeTable;
 
 n = Handler_dynamics_generalized_coordinates_model.dof_configuration_space_robot;
 
@@ -63,7 +63,7 @@ n = Handler_dynamics_generalized_coordinates_model.dof_configuration_space_robot
 
 
 Q = 100*eye(2 * n);
-R = 0.01*eye(Handler_dynamics_generalized_coordinates_model.dof_control);
+R = 1*eye(Handler_dynamics_generalized_coordinates_model.dof_control);
 Count = size(A_table, 3);
 K_table = SRD_CLQR_GenerateTable(A_table, B_table, repmat(Q, [1, 1, Count]), repmat(R, [1, 1, Count]), N_table);
 
@@ -84,15 +84,39 @@ x0 = [InitialPosition; zeros(size(InitialPosition))];
 
 [time_table_0, solution_tape] = ode45(ode_fnc_handle, [0, tf], x0);
 
-figure('Color', 'w')
+
+figure('Color', 'w', 'Name', 'Solution Tape')
 % % solution_tape ===actual state
-
+subplot(2, 1, 1)
 plot(time_table_0, solution_tape(:,1:n), 'LineWidth', 3)
-figure('Color', 'w')
-
+title('Solution tape $q$','interpreter','latex')
+legend('$q_1$','$q_2$','$q_3$','interpreter','latex')
+subplot(2, 1, 2)
 plot(time_table_0, solution_tape(:,n+1:n*2), 'LineWidth', 3);
-% % desired
-plot(time_table', x_table(1:3,:)', '--', 'LineWidth', 1);
+title('Solution tape $\dot{q}$','interpreter','latex')
+legend('$\dot{q}_1$','$\dot{q}_2$','$\dot{q}_3$','interpreter','latex')
+
+
+figure('Color', 'w')
+subplot(2, 1, 1)
+SRDgraphic_PlotGeneric(time_table', x_table(1:3,:)', ...
+    'NewFigure', false, ...
+    'Title', 'Joint position', ...
+    'LableVariable', 'q');
+subplot(2, 1, 2)
+SRDgraphic_PlotGeneric(time_table', x_table(4:6,:)', ...
+    'NewFigure', false, ...
+    'Title', 'Joint Velocity', ...
+    'LableVariable', '\dot{q}');
+drawnow;
+
+
+% % % desired
+% figure('Color', 'w')
+% subplot(2, 1, 1)
+% plot(time_table', x_table(1:3,:)', '--', 'LineWidth', 1);
+% subplot(2, 1, 2)
+% plot(time_table', x_table(4:6,:)', '--', 'LineWidth', 1);
 
 % figure('Color', 'w')
 % plot(time_table, cc_table, 'LineWidth', 3); hold on;

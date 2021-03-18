@@ -1,4 +1,4 @@
-clear all ; close all;
+clear ; close ;
 
 %Get initial positionSRD_get_handler__IK_solution__interp1
 InitialPosition = SRD_get('InitialPosition');
@@ -8,12 +8,12 @@ IC_Task = Task(InitialPosition);
 Handler_dynamics = SRD_get("Handler_dynamics_generalized_coordinates_model");
 
 
-H = Handler_dynamics.get_joint_space_inertia_matrix;
-t0 = 0;
-tf = 3;
-dt = 0.1;
+% H = Handler_dynamics.get_joint_space_inertia_matrix;
+% t0 = 0;
+% tf = 3;
+% dt = 0.1;
 
-TimeTable = linspace(0,7,50);
+TimeTable = linspace(0,2,50);
 
 
 Goal_task = [0.55;...
@@ -23,8 +23,7 @@ Goal_task = [0.55;...
   
 Obs_pose  = [0.5;-0.1325;-0.164];     
 Task_params = [Goal_task,Obs_pose];
-
-
+Wieght = [3,1];
          
 % [dist,diff_dist]= get_distance(FK_fun,q,xb);
 
@@ -32,6 +31,7 @@ Task_params = [Goal_task,Obs_pose];
 
 [IK_Table,V_Table] = SRD_InverseKinematics_GenerateTable_ode(...
     'Task_params',Task_params,...
+    'Wieght',Wieght,...
     'Handler_IK_Model', Handler_IK_Model, ...
     'InitialGuess', InitialPosition, ...
     'method', @SRD_InversePositionProblemSolver_Ode_Dynamics,...
